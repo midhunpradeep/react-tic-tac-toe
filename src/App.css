@@ -1,0 +1,147 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.ttt-game {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ttt-game > * {
+  flex: auto;
+}
+
+.ttt-board {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  justify-self: end;
+
+  list-style: none;
+
+  padding: 2vmin;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1vmin;
+
+  aspect-ratio: 1 / 1;
+  max-width: 95vmin;
+  max-height: 95vmin;
+  border: 0.2rem solid grey;
+  border-radius: 5vmin;
+}
+
+.ttt-cell {
+  font-size: 10vmin;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  aspect-ratio: 1 / 1;
+  border: 0.2rem solid grey;
+  border-radius: 3vmin;
+
+  transition:
+    transform 250ms ease-in-out,
+    opacity 250ms ease-in-out;
+}
+
+.ttt-cell:not([data-value]) {
+  cursor: pointer;
+}
+
+.ttt-cell[data-value]:not([data-winning-cell]) {
+  background-color: hsl(0, 0%, 10%);
+  transform: scale(0.9);
+}
+
+.ttt-game:not([data-winner]) .ttt-cell:hover:not([data-value]) {
+  transform: scale(1.03);
+}
+
+.ttt-game[data-winner] .ttt-cell[data-winning-cell] {
+  background-color: hsl(0, 0%, 20%);
+}
+
+.ttt-game[data-winner] .ttt-cell:not([data-winning-cell]) {
+  transform: scale(0.9);
+  opacity: 0.75;
+  cursor: unset;
+}
+
+.ttt-menu {
+  align-self: start;
+  text-align: center;
+
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  max-width: max-content;
+  border: 0.2rem solid grey;
+  border-radius: 2rem;
+}
+
+.ttt-menu div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.ttt-menu div button {
+  padding: 0.2rem;
+}
+
+.ttt-status {
+  padding: 0;
+  margin: 0;
+}
+
+.ttt-moves {
+  list-style: none;
+
+  padding: 2vmin;
+  margin: 0;
+
+  border: 0.2rem solid grey;
+  border-radius: 0.67rem;
+}
+
+.ttt-moves > li {
+  cursor: pointer;
+  transition: transform 250ms ease-in-out;
+}
+
+.ttt-moves > li:hover {
+  transform: scale(1.05);
+}
+
+@media (width <= 600px) {
+  .ttt-game {
+    flex-direction: column;
+  }
+
+  .ttt-menu {
+    align-self: center;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media (width <= 380px) {
+  .ttt-menu {
+    flex-direction: column;
+  }
+}
